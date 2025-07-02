@@ -540,22 +540,24 @@ window.onload = function() {
             casa, numero, cep, cidade, estado, pais
         };
         if (!enderecoEntrega.casa || !enderecoEntrega.numero || !enderecoEntrega.cep || !enderecoEntrega.cidade || !enderecoEntrega.estado || !enderecoEntrega.pais) {
-            if (!casa) document.getElementById('inputCasa').classList.add('is-invalid');
-            if (!numero) document.getElementById('inputNumero').classList.add('is-invalid');
-            if (!cep) document.getElementById('inputCep').classList.add('is-invalid');
-            if (!cidade) document.getElementById('inputCidade').classList.add('is-invalid');
-            if (!estado) document.getElementById('inputEstado').classList.add('is-invalid');
-            if (!pais) document.getElementById('inputPais').classList.add('is-invalid');
-            if (!casa) document.getElementById('inputCasa').focus();
-            else if (!numero) document.getElementById('inputNumero').focus();
-            else if (!cep) document.getElementById('inputCep').focus();
-            else if (!cidade) document.getElementById('inputCidade').focus();
-            else if (!estado) document.getElementById('inputEstado').focus();
-            else if (!pais) document.getElementById('inputPais').focus();
+            if (!casa) { var el = document.getElementById('inputCasa'); if (el && el.classList) el.classList.add('is-invalid'); }
+            if (!numero) { var el = document.getElementById('inputNumero'); if (el && el.classList) el.classList.add('is-invalid'); }
+            if (!cep) { var el = document.getElementById('inputCep'); if (el && el.classList) el.classList.add('is-invalid'); }
+            if (!cidade) { var el = document.getElementById('inputCidade'); if (el && el.classList) el.classList.add('is-invalid'); }
+            if (!estado) { var el = document.getElementById('inputEstado'); if (el && el.classList) el.classList.add('is-invalid'); }
+            if (!pais) { var el = document.getElementById('inputPais'); if (el && el.classList) el.classList.add('is-invalid'); }
+            // Foco no primeiro campo inválido existente
+            if (!casa) { var el = document.getElementById('inputCasa'); if (el) el.focus(); }
+            else if (!numero) { var el = document.getElementById('inputNumero'); if (el) el.focus(); }
+            else if (!cep) { var el = document.getElementById('inputCep'); if (el) el.focus(); }
+            else if (!cidade) { var el = document.getElementById('inputCidade'); if (el) el.focus(); }
+            else if (!estado) { var el = document.getElementById('inputEstado'); if (el) el.focus(); }
+            else if (!pais) { var el = document.getElementById('inputPais'); if (el) el.focus(); }
             return;
         } else {
             ['inputCasa','inputNumero','inputCep','inputCidade','inputEstado','inputPais'].forEach(id => {
-                document.getElementById(id).classList.remove('is-invalid');
+                var el = document.getElementById(id);
+                if (el && el.classList) el.classList.remove('is-invalid');
             });
         }
         if (opcao === 'pagamentoPix') msg = 'Pagamento via Pix confirmado! Obrigado pela compra.';
