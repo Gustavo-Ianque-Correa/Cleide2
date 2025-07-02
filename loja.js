@@ -540,11 +540,23 @@ window.onload = function() {
             casa, numero, cep, cidade, estado, pais
         };
         if (!enderecoEntrega.casa || !enderecoEntrega.numero || !enderecoEntrega.cep || !enderecoEntrega.cidade || !enderecoEntrega.estado || !enderecoEntrega.pais) {
-            document.getElementById('inputLocalizacaoEntrega').classList.add('is-invalid');
-            document.getElementById('inputLocalizacaoEntrega').focus();
+            if (!casa) document.getElementById('inputCasa').classList.add('is-invalid');
+            if (!numero) document.getElementById('inputNumero').classList.add('is-invalid');
+            if (!cep) document.getElementById('inputCep').classList.add('is-invalid');
+            if (!cidade) document.getElementById('inputCidade').classList.add('is-invalid');
+            if (!estado) document.getElementById('inputEstado').classList.add('is-invalid');
+            if (!pais) document.getElementById('inputPais').classList.add('is-invalid');
+            if (!casa) document.getElementById('inputCasa').focus();
+            else if (!numero) document.getElementById('inputNumero').focus();
+            else if (!cep) document.getElementById('inputCep').focus();
+            else if (!cidade) document.getElementById('inputCidade').focus();
+            else if (!estado) document.getElementById('inputEstado').focus();
+            else if (!pais) document.getElementById('inputPais').focus();
             return;
         } else {
-            document.getElementById('inputLocalizacaoEntrega').classList.remove('is-invalid');
+            ['inputCasa','inputNumero','inputCep','inputCidade','inputEstado','inputPais'].forEach(id => {
+                document.getElementById(id).classList.remove('is-invalid');
+            });
         }
         if (opcao === 'pagamentoPix') msg = 'Pagamento via Pix confirmado! Obrigado pela compra.';
         else if (opcao === 'pagamentoCartao') {
